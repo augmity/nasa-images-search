@@ -36,7 +36,7 @@ export const NasaImagesApiHook = () => {
       setIsLoading(true);
       setData({});
       try {
-        const result = await axios(`https://images-api.nasa.gov/search?q=${query}`);
+        const result = await axios(`https://images-api.nasa.gov/search?q=${query}&media_type=image`);
         setData({ images: nasaImageDataToImageData(result.data) });
       } catch (error) {
         setIsError(true);

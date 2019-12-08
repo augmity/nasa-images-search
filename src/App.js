@@ -17,7 +17,7 @@ function App() {
         <div className="container">
           <h1 className="title">NASA Images Search</h1>
           <h2 className="subtitle">
-            Type something (try "mars" or "earth") in the input below and click "Search" 🙂
+            Type something (try "mars" or "earth") in the input below and click "Search" <span role="img" aria-label="smile">🙂</span>
           </h2>
 
           <div className="field has-addons">
@@ -43,13 +43,11 @@ function App() {
 
       <section className="section">
         <div className="container">
-
           <div className="image-grid">
             {data && data.images && data.images.map(image => (
-              <img src={image.uri} key={image.id} />        
+              <img src={image.uri} key={image.id} alt="" />        
             ))}            
           </div>
-
         </div>
       </section>
     </>
