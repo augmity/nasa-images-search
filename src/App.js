@@ -33,6 +33,12 @@ function App() {
 
       <section className="section">
         <div className="container">
+
+          {(data && data.length === 0) &&
+            <p>
+              No results found.
+            </p>}
+
           <div className="image-grid">
             {data && data.map(image => (
               <img src={image.uri} key={image.id} alt="" />        
