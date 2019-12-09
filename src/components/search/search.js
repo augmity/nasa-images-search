@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import './search.css';
 
-export const Search = ({ isLoading, onSearch }) => {
 
-  const [query, setQuery] = useState();
+export const Search = ({ isLoading, onSearch, onClear }) => {
+
+  const [query, setQuery] = useState('');
 
   const search = () => {
     if (onSearch) {
@@ -10,13 +12,21 @@ export const Search = ({ isLoading, onSearch }) => {
     }
   };
 
+  const clear = () => {
+    setQuery('');
+    if (onClear) {
+      onClear();
+    }
+  }
+
   return (
     <div className="field has-addons">
-      <div className="control">
+      <div className="control has-icons-right">
         <input
           className="input"
           type="text"
           disabled={isLoading ? 'disabled' : ''}
+          value={query}
           onChange={(event) => {
             setQuery(event.target.value);
           }}
@@ -26,6 +36,10 @@ export const Search = ({ isLoading, onSearch }) => {
             }
           }}
         />
+        {(query && query !== '') &&
+          <span className="icon is-small is-right" onClick={clear}>
+            <span className="clear"></span>
+          </span>}
       </div>
       <div className="control">
         <button className={`button is-success ${isLoading ? 'is-loading' : ''}`} onClick={search}>Search</button>

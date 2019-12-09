@@ -51,5 +51,9 @@ export const NasaImagesApiHook = () => {
     }
   }, [query]);
 
-  return [{ data, isLoading, error }, setQuery];
+  const clear = () => {
+    setData(null);
+  }
+
+  return [{ data, isLoading, error }, setQuery, clear];
 }
