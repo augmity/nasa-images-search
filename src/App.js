@@ -9,7 +9,7 @@ import { NasaImagesApiHook } from "./hooks/nasaImagesApi.hook";
 function App() {
 
   let searchInput;
-  const [{ data, isLoading, isError }, search] = NasaImagesApiHook();
+  const [{ data, isLoading, error }, search] = NasaImagesApiHook();
 
   return (
     <>
@@ -38,6 +38,13 @@ function App() {
               <button className={`button is-success ${isLoading ? 'is-loading' : ''}`} onClick={() => search(searchInput.value)}>Search</button>
             </div>
           </div>
+
+          {error && 
+            <div class="message is-danger">
+              <div class="message-body">
+                {error.message}
+              </div>
+            </div>}
         </div>
       </section>
 
