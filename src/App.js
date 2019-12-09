@@ -3,12 +3,12 @@ import React from 'react';
 import 'bulma/css/bulma.css';
 import './App.css';
 
+import { Search } from './components/search/search';
 import { NasaImagesApiHook } from "./hooks/nasaImagesApi.hook";
 
 
 function App() {
 
-  let searchInput;
   const [{ data, isLoading, error }, search] = NasaImagesApiHook();
 
   return (
@@ -20,24 +20,7 @@ function App() {
             Type something (try "mars" or "earth") in the input below and click "Search" <span role="img" aria-label="smile">🙂</span>
           </h2>
 
-          <div className="field has-addons">
-            <div className="control">
-              <input
-                className="input"
-                type="text"
-                ref={input => searchInput = input}
-                disabled={isLoading ? 'disabled' : ''}
-                onKeyPress={event => {
-                  if (event.key === 'Enter') {
-                    search(searchInput.value);
-                  }
-                }}
-              />
-            </div>
-            <div className="control">
-              <button className={`button is-success ${isLoading ? 'is-loading' : ''}`} onClick={() => search(searchInput.value)}>Search</button>
-            </div>
-          </div>
+          <Search isLoading={isLoading} onSearch={search} />
 
           {error && 
             <div class="message is-danger">
