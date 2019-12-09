@@ -51,7 +51,7 @@ function App() {
       <section className="section">
         <div className="container">
           <div className="image-grid">
-            {data && data.images && data.images.map(image => (
+            {data && data.map(image => (
               <img src={image.uri} key={image.id} alt="" />        
             ))}            
           </div>

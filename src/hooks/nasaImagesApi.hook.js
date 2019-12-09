@@ -25,7 +25,7 @@ export const NasaImagesApiHook = () => {
   }
 
 
-  const [data, setData] = useState({});
+  const [data, setData] = useState();
   const [query, setQuery] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -34,10 +34,10 @@ export const NasaImagesApiHook = () => {
     const fetchData = async () => {
       setError(null);
       setIsLoading(true);
-      setData({});
+      setData(null);
       try {
         const result = await axios(`https://images-api.nasa.gov/search?q=${query}&media_type=image`);
-        setData({ images: nasaImageDataToImageData(result.data) });
+        setData(nasaImageDataToImageData(result.data));
       } catch (error) {
         setError(error);
       }
